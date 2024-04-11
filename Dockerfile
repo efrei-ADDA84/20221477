@@ -6,4 +6,4 @@ COPY tp1_devops.py .
 
 RUN pip install requests
 
-CMD ["python", "tp1devopps.py"]
+CMD ["python", "tp1_devops.py"]
