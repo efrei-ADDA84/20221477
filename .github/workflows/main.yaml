@@ -6,7 +6,7 @@ on:
       - 'main'
 
 jobs:
-  build-and-deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest
     
     steps:
@@ -24,7 +24,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/efrei-devops-tp2:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/efrei_devops_tp3:latest
 
       - name: Login to Azure Container Registry
         uses: docker/login-action@v1
@@ -39,7 +39,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.REGISTRY_LOGIN_SERVER }}/efrei-devops-tp2:latest
+          tags: ${{ secrets.REGISTRY_LOGIN_SERVER }}/efrei_devops_tp3:latest
         env:
           OPENWEATHER_API: ${{ secrets.API_OPENWEATHER }}
 
@@ -51,12 +51,12 @@ jobs:
       - name: Deploy Container to Azure Container Instances
         uses: azure/aci-deploy@v1
         with:
-          name: efrei-devops-tp2
-          resource-group: ${{ secrets.RESOURCE_GROUP }}
+          name: efrei_devops_tp3
+          resource_group: ${{ secrets.RESOURCE_GROUP }}
           location: 'germanywestcentral'
-          dns-name-label: efrei-devops-tp2
-          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/efrei-devops-tp2:latest
-          registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          secure-environment-variables: OPENWEATHER_API_KEY=${{ secrets.API_OPENWEATHER }}
+          dns_name_label: efrei_devops_tp3
+          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/efrei_devops_tp3:latest
+          registry_login_server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          registry_username: ${{ secrets.REGISTRY_USERNAME }}
+          registry_password: ${{ secrets.REGISTRY_PASSWORD }}
+          secure_environment_variables: OPENWEATHER_API_KEY=${{ secrets.API_OPENWEATHER }}
