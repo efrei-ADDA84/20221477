@@ -24,7 +24,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/efrei_devops_tp3:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/efrei_devops:latest
 
       - name: Login to Azure Container Registry
         uses: docker/login-action@v1
@@ -43,20 +43,20 @@ jobs:
         env:
           OPENWEATHER_API: ${{ secrets.API_OPENWEATHER }}
 
-      - name: Authenticate with Azure CLI
+      - name: 'Authentification avec Azure CLI'
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Deploy Container to Azure Container Instances
+      - name: 'Deploiement du containeur sur ACI'
         uses: azure/aci-deploy@v1
         with:
           name: 20221477
-          resource_group: ${{ secrets.RESOURCE_GROUP }}
+          resource-group: ${{ secrets.RESOURCE_GROUP }}
           location: 'germanywestcentral'
-          dns_name_label: efrei_devops_tp3
+          dns-name-label: devops-20221477
           image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20221477:latest
-          registry_login_server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          registry_username: ${{ secrets.REGISTRY_USERNAME }}
-          registry_password: ${{ secrets.REGISTRY_PASSWORD }}
-          secure_environment_variables: OPENWEATHER_API_KEY=${{ secrets.API_OPENWEATHER }}
+          registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          secure-environment-variables: OPENWEATHER_API_KEY=${{ secrets.API_OPENWEATHER }}
