@@ -24,7 +24,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/efrei_devops:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/tp_devops:latest
 
       - name: Login to Azure Container Registry
         uses: docker/login-action@v1
@@ -53,10 +53,10 @@ jobs:
         with:
           resource-group: ${{ secrets.RESOURCE_GROUP }}
           location: 'germanywestcentral'
-          dns-name-label: devops-20221477
+          dns-name-label: devops_20221477
           name: 20221477
           image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20221477:latest
           registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           registry-username: ${{ secrets.REGISTRY_USERNAME }}
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          secure-environment-variables: OPENWEATHER_API_KEY=${{ secrets.API_OPENWEATHER }}
+          secure-environment-variables: OPENWEATHER_API=${{ secrets.API_OPENWEATHER }}
