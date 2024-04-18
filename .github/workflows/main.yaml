@@ -39,7 +39,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.REGISTRY_LOGIN_SERVER }}/efrei_devops_tp3:latest
+          tags: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20221477:latest
         env:
           OPENWEATHER_API: ${{ secrets.API_OPENWEATHER }}
 
@@ -51,11 +51,11 @@ jobs:
       - name: Deploy Container to Azure Container Instances
         uses: azure/aci-deploy@v1
         with:
-          name: efrei_devops_tp3
+          name: 20221477
           resource_group: ${{ secrets.RESOURCE_GROUP }}
           location: 'germanywestcentral'
           dns_name_label: efrei_devops_tp3
-          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/efrei_devops_tp3:latest
+          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20221477:latest
           registry_login_server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           registry_username: ${{ secrets.REGISTRY_USERNAME }}
           registry_password: ${{ secrets.REGISTRY_PASSWORD }}
