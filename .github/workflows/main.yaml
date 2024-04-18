@@ -43,15 +43,14 @@ jobs:
         env:
           OPENWEATHER_API: ${{ secrets.API_OPENWEATHER }}
 
-      - name: 'Authentification avec Azure CLI'
+      - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: 'Deploiement du containeur sur ACI'
+      - name: Deploiement du containeur sur ACI
         uses: azure/aci-deploy@v1
         with:
-          name: 20221477
           resource-group: ${{ secrets.RESOURCE_GROUP }}
           location: 'germanywestcentral'
           dns-name-label: devops-20221477
