@@ -51,7 +51,7 @@ jobs:
         resource-group: ADDA84-CTP 
         dns-name-label: devops-20221477
         image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20221477
-        name: 20220499 
+        name: 20221477
         location: 'germanynorth' 
         registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }} 
         registry-username: ${{ secrets.REGISTRY_USERNAME }} 
