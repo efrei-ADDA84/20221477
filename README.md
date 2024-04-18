@@ -52,7 +52,7 @@ Analyse avec Trivy :
  
 Installez Trivy et scannez l'image pour des vulnérabilités :
  
-docker run aquasec/trivy image esalah/20221477
+>docker run aquasec/trivy image esalah/20221477
  
 Modification effectuée pour réduire les vulnérabilités en changeant la base de l'image Docker de python:3.9-slim à python:3.9-alpine.
  
@@ -60,7 +60,7 @@ Correction des erreurs Hadolint :
  
 Utilisez Hadolint pour détecter les erreurs de style dans le Dockerfile :
  
-docker run --rm -i hadolint/hadolint < Dockerfile
+>docker run --rm -i hadolint/hadolint < Dockerfile
  
 Correction apportée par l'ajout de la version spécifique des paquets et l'utilisation de --no-cache-dir pour installer requests.
 
@@ -88,14 +88,36 @@ Construction et Exécution Localement
 Pour construire et exécuter l'API localement :
 
 
-docker build -t monapi/meteo:latest .
-docker run -p 8081:8081 --env API_KEY=votre_clé_api elyessalah/efrei-devops-tp2:latest
+>docker build -t monapi/meteo:latest .
+>docker run -p 8081:8081 --env API_KEY=votre_clé_api elyessalah/efrei-devops-tp2:latest
 
 Tester l'API
 
 Après avoir démarré le conteneur, ouvrez un autre terminal et exécutez cette commande pour interroger l'API :
 
-curl "http://localhost:8081/?lat=48.8511&lon=2.3511"
+>curl "http://localhost:8081/?lat=48.8511&lon=2.3511"
 
 Déploiement Automatique
 Les modifications apportées au dépôt GitHub déclencheront un workflow GitHub Actions défini dans docker_build_push.yaml, qui construira et poussera automatiquement l'image Docker sur Docker Hub.
+
+TP3 - DEVOPS
+
+Étape 1: Configuration du GitHub Actions YAML
+Voici la configuration YAML utilisée pour automatiser le build et le déploiement de l'image Docker sur Azure Container Registry (ACR) et Azure Container Instance (ACI).
+
+Étape 2: Modifications du code Python
+Aucune modification n'a été apportée au code Python fourni. L'API fonctionne comme prévu et renvoie les données météorologiques en fonction des coordonnées fournies.
+
+Étape 3: Tests et Déploiement
+Après avoir configuré les secrets dans l'organisation GitHub, chaque commit déclenche automatiquement le build de l'image Docker et son déploiement sur Azure Container Instance. Les tests ont été effectués avec succès à l'aide de la commande curl.
+
+Conclusion sur l'utilisation de GitHub Actions
+L'utilisation de GitHub Actions pour automatiser le processus de build et de déploiement présente plusieurs avantages :
+
+Automatisation: Le processus est entièrement automatisé, réduisant ainsi le besoin d'intervention manuelle.
+Intégration Continue : Chaque nouveau commit déclenche automatiquement le build et les tests, assurant ainsi une intégration continue du code.
+Facilité d'utilisation: GitHub Actions est intégré à la plateforme GitHub, ce qui facilite sa configuration et son utilisation.
+En conclusion, l'utilisation de GitHub Actions pour le déploiement offre une solution efficace et pratique pour automatiser les workflows de développement et de déploiement.
+
+
+pour tester effectuer : >curl "http://devops-20221477.germanynorth.azurecontainer.io/?lat=5.902785&lon=102.754175"
