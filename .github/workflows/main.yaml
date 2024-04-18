@@ -48,11 +48,11 @@ jobs:
     - name: 'Deploy to Azure Container Instance' 
       uses: azure/aci-deploy@v1
       with: 
-        resource-group: ADDA84-CTP 
-        dns-name-label: devops-20221477
-        image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20221477
-        name: 20221477
-        location: 'germanynorth' 
+        resource-group: "ADDA84-CTP" 
+        dns-name-label: "devops-20221477"
+        image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20221477:latest
+        name: "20221477"
+        location: "germanynorth" 
         registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }} 
         registry-username: ${{ secrets.REGISTRY_USERNAME }} 
         registry-password: ${{ secrets.REGISTRY_PASSWORD }} 
